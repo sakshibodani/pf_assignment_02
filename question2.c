@@ -38,23 +38,24 @@ int main() {
                 break;
                 
             case 2:
-
                 displayinventory(productNames, prices, stock, productCount);
-                break;
-                
+                break;    
             case 3:
-                if(!customerInfoEntered) {
+                if(!customerInfoEntered)
+				 {
                     printf("\nPlease enter customer information first (Option 1)!\n");
-                } else {
+                } else
+				 {
                     addToCart(productNames, prices, stock, productCount, 
                              cartProductIDs, cartQuantities, &cartCount);
                 }
                 break;
-                
             case 4:
-                if(cartCount == 0) {
+                if(cartCount==0) 
+				{
                     printf("\n? Cart is empty! Add items first (Option 3).\n");
-                } else {
+                } else 
+				{
                     displayTotalBill(productNames, prices, cartProductIDs, 
                                     cartQuantities, cartCount, &totalBill);
                     cartFinalized = 1;
@@ -62,16 +63,13 @@ int main() {
                 break;
                 
             case 5:
-                // Show invoice
-                if(!cartFinalized) {
-                    printf("\n? Please finalize bill first (Option 4)!\n");
+                if(!cartFinalized) 
+				{
+                    printf("\nPlease finalize bill first (Option 4)!\n");
                 } else {
-                    // Update inventory after checkout
                     updateInventory(stock, cartProductIDs, cartQuantities, cartCount);
                     showInvoice(customerName, customerCNIC, productNames, prices, 
                                cartProductIDs, cartQuantities, cartCount, totalBill);
-                    
-                    // Reset cart after invoice
                     cartCount = 0;
                     cartFinalized = 0;
                     totalBill = 0.0;
@@ -79,7 +77,6 @@ int main() {
                 break;
                 
             case 6:
-                // Exit
                 printf("\nThank you for shopping with us!\n");
                 printf("Goodbye!\n");
                 break;
@@ -90,26 +87,25 @@ int main() {
         
     } while(ch != 6);
     
-    return 0;
 }
-
-// Display main menu
 void displayMenu() {
-    printf("\n========== MAIN MENU ==========\n");
+    printf("\nMAIN MENU\n");
     printf("1. Customer Information\n");
     printf("2. Display Inventory\n");
     printf("3. Add Item to Cart\n");
     printf("4. Display Total Bill\n");
     printf("5. Show Invoice\n");
     printf("6. Exit\n");
-    printf("================================\n");
+    printf("\n");
 }
 
-// Remove newline from fgets input
-void removeNewline(char str[]) {
+void removeNewline(char str[]) 
+{
     int i = 0;
-    while(str[i] != '\0') {
-        if(str[i] == '\n') {
+    while(str[i] != '\0') 
+	{
+        if(str[i] == '\n') 
+		{
             str[i] = '\0';
             break;
         }
@@ -138,21 +134,20 @@ int comparePromocode(char input[], char promocode[]) {
     }
     return 0;
 }
-void customerinfo(char customerName[], char customerCNIC[]) {
-    printf("\n=== CUSTOMER INFORMATION ===\n");
-    
+void customerinfo(char customerName[], char customerCNIC[]) 
+{
+    printf("\nCUSTOMER INFORMATION \n"); 
     printf("Enter Customer Name: ");
     fgets(customerName, 50, stdin);
     removeNewline(customerName);
-    
-    printf("Enter CNIC Number: ");
+     printf("Enter CNIC Number: ");
     fgets(customerCNIC, 20, stdin);
-    removeNewline(customerCNIC);
-    
-    printf("\n? Customer information saved!\n");
+    removeNewline(customerCNIC); 
+    printf("\nCustomer information saved!\n");
 }
 
-void displayinventory(char productNames[][30], float prices[], int stock[], int productCount) {
+void displayinventory(char productNames[][30], float prices[], int stock[], int productCount) 
+{
     printf("\n========== INVENTORY ==========\n");
     printf("ID  Product Name          Price (PKR)  Stock\n");
     printf("-----------------------------------------------\n");
@@ -164,8 +159,10 @@ void displayinventory(char productNames[][30], float prices[], int stock[], int 
     }
 }
 void addToCart(char productNames[][30], float prices[], int stock[], int productCount,
-               int cartProductIDs[], int cartQuantities[], int *cartCount) {
+               int cartProductIDs[], int cartQuantities[], int *cartCount)
+			    {
     printf("\n=== ADD ITEM TO CART ===\n");
+    
     
     if(*cartCount >= 10) {
         printf("Error: Cart is full!\n");
